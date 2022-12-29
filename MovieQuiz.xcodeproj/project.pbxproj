@@ -16,6 +16,7 @@
 		AD5EE5DE284D7887003966EF /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5EE5DD284D7887003966EF /* UIColor+Extensions.swift */; };
 		AD77F5742857F8810062FB14 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD77F5732857F8810062FB14 /* Date+Extensions.swift */; };
 		AD7AFA552836189F00399704 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7AFA542836189F00399704 /* Array+Extensions.swift */; };
+		DB97BB59295D4A7E002C0C2F /* Defolt.png in Resources */ = {isa = PBXBuildFile; fileRef = DB97BB58295D4A7E002C0C2F /* Defolt.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,10 @@
 		AD5EE5DD284D7887003966EF /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		AD77F5732857F8810062FB14 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		AD7AFA542836189F00399704 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		DB97BB58295D4A7E002C0C2F /* Defolt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Defolt.png; path = "../../MovieQuiz-ios. 2/MovieQuiz/Resources/Defolt.png"; sourceTree = "<group>"; };
+		DB97BB5A295D4A8C002C0C2F /* Defolt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Defolt.png; sourceTree = "<group>"; };
+		DB97BB5B295D4BEF002C0C2F /* YS Display-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "YS Display-Bold.ttf"; sourceTree = "<group>"; };
+		DB97BB5C295D4BEF002C0C2F /* YS Display-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "YS Display-Medium.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				AD1ABABC2831907F00B3E448 /* LaunchScreen.storyboard */,
+				DB97BB5A295D4A8C002C0C2F /* Defolt.png */,
 				AD1ABABA2831907F00B3E448 /* Assets.xcassets */,
 				AD1ABABF2831907F00B3E448 /* Info.plist */,
 			);
@@ -102,6 +108,9 @@
 				8F4738332848DE46005DF65E /* Resources */,
 				AD1ABAB12831907B00B3E448 /* AppDelegate.swift */,
 				AD1ABAB32831907B00B3E448 /* SceneDelegate.swift */,
+				DB97BB58295D4A7E002C0C2F /* Defolt.png */,
+				DB97BB5B295D4BEF002C0C2F /* YS Display-Bold.ttf */,
+				DB97BB5C295D4BEF002C0C2F /* YS Display-Medium.ttf */,
 			);
 			path = MovieQuiz;
 			sourceTree = "<group>";
@@ -178,6 +187,7 @@
 			files = (
 				AD1ABABE2831907F00B3E448 /* LaunchScreen.storyboard in Resources */,
 				AD1ABABB2831907F00B3E448 /* Assets.xcassets in Resources */,
+				DB97BB59295D4A7E002C0C2F /* Defolt.png in Resources */,
 				AD1ABAB92831907B00B3E448 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
