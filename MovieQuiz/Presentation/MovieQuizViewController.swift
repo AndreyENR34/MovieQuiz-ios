@@ -40,7 +40,7 @@ final class MovieQuizViewController: UIViewController {
         let text: String
         let correctAnswer: Bool
     }
-  private var currentQuestionIndex: Int = 0
+    private var currentQuestionIndex: Int = 0
   
     private var correctAnswers: Int = 0
     private var button : String = ""
@@ -98,24 +98,29 @@ final class MovieQuizViewController: UIViewController {
     private func showAnswerResult(isCorrect: Bool) {
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 8
-        //noButton.layer.masksToBounds = true
-        //noButton.layer.borderWidth = 8
         
-        if isCorrect == true {
+        if isCorrect {
             correctAnswers += 1
         }
         
-        if  button == "no" && isCorrect == true {
-            imageView.layer.borderColor = UIColor.green.cgColor
+        if  button == "no" && isCorrect {
+            noButton.isEnabled = false
+            yesButton.isEnabled = false
+            imageView.layer.borderColor = UIColor(named: "ypGreen")!.cgColor
             
         }
-        if button == "no" && isCorrect == false {imageView.layer.borderColor = UIColor.red.cgColor}
-        
-        if  button == "yes" && isCorrect == true {
-            imageView.layer.borderColor = UIColor.green.cgColor
+        if button == "no" && isCorrect == false {imageView.layer.borderColor = UIColor(named: "ypRed")!.cgColor}
+            noButton.isEnabled = false
+            yesButton.isEnabled = false
+        if  button == "yes" && isCorrect {
+            noButton.isEnabled = false
+            yesButton.isEnabled = false
+            imageView.layer.borderColor = UIColor(named: "ypGreen")!.cgColor
             
         }
-        if  button == "yes" && isCorrect == false {imageView.layer.borderColor = UIColor.red.cgColor }
+        if  button == "yes" && isCorrect == false {imageView.layer.borderColor = UIColor(named: "ypRed")!.cgColor }
+            noButton.isEnabled = false
+            yesButton.isEnabled = false
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.showNextQuestionOrResults()
         }
@@ -128,14 +133,18 @@ final class MovieQuizViewController: UIViewController {
                 text: "Ваш результат: \(correctAnswers) из 10",
                 buttonText: "сыграть еще раз")
             
-            imageView.layer.borderColor = UIColor.black.cgColor
-            imageView.layer.borderColor = UIColor.black.cgColor
+            imageView.layer.borderColor = UIColor(named: "ypBlack")!.cgColor
+            imageView.layer.borderColor = UIColor(named: "ypBlack")!.cgColor
             show(quizresult: viewModel)
+            noButton.isEnabled = true
+            yesButton.isEnabled = true
         } else {
-            imageView.layer.borderColor = UIColor.black.cgColor
-            imageView.layer.borderColor = UIColor.black.cgColor
+            imageView.layer.borderColor = UIColor(named: "ypBlack")!.cgColor
+            imageView.layer.borderColor = UIColor(named: "ypBlack")!.cgColor
             currentQuestionIndex += 1
             show(quiz: convert(model: questions[currentQuestionIndex]) )
+            noButton.isEnabled = true
+            yesButton.isEnabled = true
         }
     }
     
@@ -146,21 +155,18 @@ final class MovieQuizViewController: UIViewController {
         show(quiz: convert(model: currentQuestion) )
     }
     
-  
-    
     @IBAction private func  noButtonClicked(_ sender: UIButton) {
         button = "no"
         let givenAnswer = false
         showAnswerResult(isCorrect: givenAnswer == questions[currentQuestionIndex].correctAnswer)
-        
     }
     
         @IBAction private func  yesButtonClicked(_ sender: UIButton) {
         button = "yes"
         let givenAnswer = true
-        showAnswerResult(isCorrect: givenAnswer == questions[currentQuestionIndex].correctAnswer)  }
-    
-}
+        showAnswerResult(isCorrect: givenAnswer == questions[currentQuestionIndex].correctAnswer)
+        }
+    }
 
 /*
  Mock-данные
