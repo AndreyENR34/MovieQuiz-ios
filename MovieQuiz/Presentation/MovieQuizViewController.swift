@@ -4,7 +4,7 @@ import Foundation
 
 final class MovieQuizViewController: UIViewController,QuestionFactoryDelegate, AlertDelegate {
     
-  
+    
     
     
     // MARK: - Lifecycle
@@ -18,26 +18,19 @@ final class MovieQuizViewController: UIViewController,QuestionFactoryDelegate, A
     @IBOutlet private weak var counterLabel: UILabel!
     
     
-    
-    
     @IBOutlet private weak var noButton: UIButton!
-    
-    
+
     @IBOutlet private weak var yesButton: UIButton!
     
     
     private var currentQuestionIndex: Int = 0
-    
     private var correctAnswers: Int = 0
-    
     private var button : String = ""
-    
     private let questionsAmount: Int = 10
     private var questionFactory: QuestionFactoryProtocol?
     private var currentQuestion: QuizQuestion?
     private var alertPresenter: AlertPresenterProtocol?
-    
-    private var statisticService = StatisticServiceImplementation()
+    private var statisticService: StatisticService = StatisticServiceImplementation()
     private var totalCorrectAnswer: Double = 0
     private var curentAccuracy: Double = 0
     
@@ -56,23 +49,23 @@ final class MovieQuizViewController: UIViewController,QuestionFactoryDelegate, A
             questionNumber: "\(currentQuestionIndex + 1)/\(questionsAmount)")
         
     }
-   
+    
     private func show(quizresult: QuizResultsViewModel) {
         // создаем модель всплывающего окна
         let alertModel = AlertModel(title: quizresult.title,
-                                      message: quizresult.text,
+                                    message: quizresult.text,
                                     buttonText: quizresult.buttonText, completion: {
-        
-                  [weak self]  in
+            
+            [weak self]  in
             guard let self = self else {return}
             self.currentQuestionIndex = 0
             self.correctAnswers = 0
             
             self.questionFactory?.requestNextQuestion()
-           })
+        })
         
-             self.alertPresenter?.showAlert(model: alertModel)
-       
+        self.alertPresenter?.showAlert(model: alertModel)
+        
     }
     
     
@@ -114,7 +107,7 @@ final class MovieQuizViewController: UIViewController,QuestionFactoryDelegate, A
             statisticService.gamesCount += 1
             statisticService.store(correct: correctAnswers, total: questionsAmount)
             curentAccuracy = Double(correctAnswers)/Double(questionsAmount)
-             totalCorrectAnswer = (Double(statisticService.totalAccuracy)*Double(questionsAmount)*Double(statisticService.gamesCount-1)) + Double(correctAnswers)
+            totalCorrectAnswer = (Double(statisticService.totalAccuracy)*Double(questionsAmount)*Double(statisticService.gamesCount-1)) + Double(correctAnswers)
             print(totalCorrectAnswer)
             if statisticService.gamesCount == 1 {
                 statisticService.totalAccuracy = curentAccuracy
@@ -129,7 +122,7 @@ final class MovieQuizViewController: UIViewController,QuestionFactoryDelegate, A
             imageView.layer.borderColor = UIColor(named: "ypBlack")!.cgColor
             
             
-          
+            
             
             show(quizresult: viewModel)
             noButton.isEnabled = true
@@ -149,22 +142,6 @@ final class MovieQuizViewController: UIViewController,QuestionFactoryDelegate, A
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!)
-        let fileName = "top250MoviesIMDB.json"
-        var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        print(documentsURL)
-        documentsURL.appendPathComponent(fileName)
-        documentsURL.path
-        let jsonString = (try? String(contentsOf: documentsURL))
-        guard let data = jsonString?.data(using: .utf8) else { return }
-        try? print(String(contentsOf: documentsURL))
-        
-        do {
-            let movie = try? JSONDecoder().decode(Movie.self, from: data)
-        } catch {
-            print("Failed to parse: \(error.localizedDescription)")
-        }
         
         questionFactory = QuestionFactory(delegate: self)
         alertPresenter = AlertPresenter(delegate: self)
@@ -214,56 +191,56 @@ final class MovieQuizViewController: UIViewController,QuestionFactoryDelegate, A
  Настоящий рейтинг: 9,2
  Вопрос: Рейтинг этого фильма больше чем 6?
  Ответ: ДА
-
-
+ 
+ 
  Картинка: The Dark Knight
  Настоящий рейтинг: 9
  Вопрос: Рейтинг этого фильма больше чем 6?
  Ответ: ДА
-
-
+ 
+ 
  Картинка: Kill Bill
  Настоящий рейтинг: 8,1
  Вопрос: Рейтинг этого фильма больше чем 6?
  Ответ: ДА
-
-
+ 
+ 
  Картинка: The Avengers
  Настоящий рейтинг: 8
  Вопрос: Рейтинг этого фильма больше чем 6?
  Ответ: ДА
-
-
+ 
+ 
  Картинка: Deadpool
  Настоящий рейтинг: 8
  Вопрос: Рейтинг этого фильма больше чем 6?
  Ответ: ДА
-
-
+ 
+ 
  Картинка: The Green Knight
  Настоящий рейтинг: 6,6
  Вопрос: Рейтинг этого фильма больше чем 6?
  Ответ: ДА
-
-
+ 
+ 
  Картинка: Old
  Настоящий рейтинг: 5,8
  Вопрос: Рейтинг этого фильма больше чем 6?
  Ответ: НЕТ
-
-
+ 
+ 
  Картинка: The Ice Age Adventures of Buck Wild
  Настоящий рейтинг: 4,3
  Вопрос: Рейтинг этого фильма больше чем 6?
  Ответ: НЕТ
-
-
+ 
+ 
  Картинка: Tesla
  Настоящий рейтинг: 5,1
  Вопрос: Рейтинг этого фильма больше чем 6?
  Ответ: НЕТ
-
-
+ 
+ 
  Картинка: Vivarium
  Настоящий рейтинг: 5,8
  Вопрос: Рейтинг этого фильма больше чем 6?

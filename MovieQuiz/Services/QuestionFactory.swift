@@ -24,6 +24,10 @@ class QuestionFactory: QuestionFactoryProtocol {
         QuizQuestion(image: "Tesla", text: "Рейтинг этого фильма больше чем 6?", correctAnswer: false),
         QuizQuestion(image: "Vivarium", text: "Рейтинг этого фильма больше чем 6?", correctAnswer: false)
     ]
+    
+    init(delegate: QuestionFactoryDelegate) {
+        self.delegate = delegate
+    }
    
    func requestNextQuestion() {                       // 1
         guard let index = (0..<questions.count).randomElement() else {  // 2
@@ -34,7 +38,5 @@ class QuestionFactory: QuestionFactoryProtocol {
         let question = questions[safe: index]
        delegate?.didReceiveNextQuestion(question: question)
     }
-    init(delegate: QuestionFactoryDelegate) {
-        self.delegate = delegate
-    }
+    
 }

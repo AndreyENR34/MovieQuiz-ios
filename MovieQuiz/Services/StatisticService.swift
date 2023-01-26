@@ -11,10 +11,10 @@ import Foundation
 
 protocol StatisticService {
     func store(correct count: Int, total amount: Int)
-     //userDefaults = UserDefaults.standard
-    var totalAccuracy: Double { get }
+    
+    var totalAccuracy: Double { get set }
     var gamesCount: Int { get set}
-    var bestGame: GameRecord { get }
+    var bestGame: GameRecord { get set }
 }
 
 final class StatisticServiceImplementation: StatisticService {
@@ -57,7 +57,6 @@ final class StatisticServiceImplementation: StatisticService {
                 return data
           }
           set {
-                let key = Keys.gamesCount.rawValue
                 guard let name = try? newValue
                  else  {
                     return
