@@ -41,10 +41,8 @@ final class StatisticServiceImplementation: StatisticService {
             return data
             
         } set {
-            guard let name = try? newValue else {
-                return
-            }
-            UserDefaults.standard.set(name, forKey: Keys.total.rawValue)
+            
+            UserDefaults.standard.set(newValue, forKey: Keys.total.rawValue)
         }
         
     }
@@ -57,12 +55,8 @@ final class StatisticServiceImplementation: StatisticService {
                 return data
           }
           set {
-                guard let name = try? newValue
-                 else  {
-                    return
-                    
-                }
-                UserDefaults.standard.set(name, forKey: Keys.gamesCount.rawValue)
+               
+                UserDefaults.standard.set(newValue, forKey: Keys.gamesCount.rawValue)
             }
         }
         

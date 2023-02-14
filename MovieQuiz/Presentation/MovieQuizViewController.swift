@@ -5,11 +5,23 @@ import Foundation
 final class MovieQuizViewController: UIViewController,QuestionFactoryDelegate, AlertDelegate {
     
     
+    func didLoadDataFromServer() {
+        activityIndicator.isHidden = true // скрываем индикатор загрузки
+        questionFactory?.requestNextQuestion()
+    }
+    
+    func didFailToLoadData(with error: Error) {
+        showNetworkError(message: error.localizedDescription) //возьмем в качестве сообщения описание ошибки
+    }
+    
+    
+    
     
     
     // MARK: - Lifecycle
     
     
+    @IBOutlet private var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet private weak var imageView: UIImageView!
     
@@ -19,7 +31,7 @@ final class MovieQuizViewController: UIViewController,QuestionFactoryDelegate, A
     
     
     @IBOutlet private weak var noButton: UIButton!
-
+    
     @IBOutlet private weak var yesButton: UIButton!
     
     
@@ -34,6 +46,36 @@ final class MovieQuizViewController: UIViewController,QuestionFactoryDelegate, A
     private var totalCorrectAnswer: Double = 0
     private var curentAccuracy: Double = 0
     
+    private func showLoadingIndicator() {
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+    }
+    
+    private func hideLoadingIndicator() {
+        activityIndicator.isHidden = true
+        activityIndicator.stopAnimating()
+    }
+    
+    
+    private func showNetworkError(message: String) {
+        hideLoadingIndicator()
+        
+        let viewModel = ErrorNetworkViewModel(title: "Ошибка", buttonText: "Попробовать еще раз")
+        
+        let alertModel = AlertModel(title: viewModel.title ,
+                                    message: message,
+                                    buttonText: viewModel.buttonText) { [weak self]  in
+            guard let self = self else { return }
+            
+           
+            
+               self.questionFactory?.loadData()
+        }
+        
+        alertPresenter?.showAlert( model: alertModel)
+        
+    }
+    
     
     private func show(quiz step: QuizStepViewModel) {
         imageView.image = step.image
@@ -44,7 +86,7 @@ final class MovieQuizViewController: UIViewController,QuestionFactoryDelegate, A
     
     private func convert(model: QuizQuestion) -> QuizStepViewModel {
         return QuizStepViewModel (
-            image: UIImage(named: model.image) ?? UIImage(),
+            image: UIImage(data: model.image) ?? UIImage(),
             question: model.text,
             questionNumber: "\(currentQuestionIndex + 1)/\(questionsAmount)")
         
@@ -107,12 +149,15 @@ final class MovieQuizViewController: UIViewController,QuestionFactoryDelegate, A
             statisticService.gamesCount += 1
             statisticService.store(correct: correctAnswers, total: questionsAmount)
             curentAccuracy = Double(correctAnswers)/Double(questionsAmount)
-            totalCorrectAnswer = (Double(statisticService.totalAccuracy)*Double(questionsAmount)*Double(statisticService.gamesCount-1)) + Double(correctAnswers)
+            totalCorrectAnswer =
+            (Double(statisticService.totalAccuracy) * Double(questionsAmount) * Double(statisticService.gamesCount-1)) +
+            Double(correctAnswers)
             print(totalCorrectAnswer)
             if statisticService.gamesCount == 1 {
                 statisticService.totalAccuracy = curentAccuracy
             } else {
-                statisticService.totalAccuracy = Double(totalCorrectAnswer)/Double(questionsAmount*statisticService.gamesCount)}
+                statisticService.totalAccuracy =
+                Double(totalCorrectAnswer)/Double(questionsAmount*statisticService.gamesCount)}
             let viewModel = QuizResultsViewModel(
                 title: "Этот раунд окончен!",
                 text: "Ваш результат: \(correctAnswers)/\(questionsAmount) \n Количество сыграных квизов: \(statisticService.gamesCount) \n Рекорд: \(statisticService.bestGame.correct)/\(questionsAmount) (\(statisticService.bestGame.date.dateTimeString))\n Средняя точность: \(String(format: "%.2f",statisticService.totalAccuracy*100 ))% ",
@@ -143,9 +188,13 @@ final class MovieQuizViewController: UIViewController,QuestionFactoryDelegate, A
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        questionFactory = QuestionFactory(delegate: self)
+        
+        questionFactory = QuestionFactory(moviesLoader: MoviesLoader(), delegate: self)
+        statisticService = StatisticServiceImplementation()
+        
+        showLoadingIndicator()
         alertPresenter = AlertPresenter(delegate: self)
-        questionFactory?.requestNextQuestion()
+        questionFactory?.loadData()
     }
     
     

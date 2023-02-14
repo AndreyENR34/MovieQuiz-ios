@@ -16,6 +16,7 @@
 		AD5EE5DE284D7887003966EF /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5EE5DD284D7887003966EF /* UIColor+Extensions.swift */; };
 		AD77F5742857F8810062FB14 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD77F5732857F8810062FB14 /* Date+Extensions.swift */; };
 		AD7AFA552836189F00399704 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7AFA542836189F00399704 /* Array+Extensions.swift */; };
+		DB989BAE298A7DAE00139A40 /* ErrorNetworkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB989BAD298A7DAE00139A40 /* ErrorNetworkViewModel.swift */; };
 		DB99AD19295FCD5E001F5741 /* YS Display-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB97BB5B295D4BEF002C0C2F /* YS Display-Bold.ttf */; };
 		DB99AD1A295FCD61001F5741 /* YS Display-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB97BB5C295D4BEF002C0C2F /* YS Display-Medium.ttf */; };
 		DB9FA8EB2975909500E18418 /* AlertDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9FA8EA2975909500E18418 /* AlertDelegate.swift */; };
@@ -31,6 +32,9 @@
 		DBB013302974067600B294BC /* QuestionFactoryDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB0132F2974067600B294BC /* QuestionFactoryDelegate.swift */; };
 		DBB01332297438D700B294BC /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB01331297438D700B294BC /* AlertPresenter.swift */; };
 		DBB013342974391F00B294BC /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB013332974391F00B294BC /* AlertModel.swift */; };
+		DBCCB22E298B63F8006AE610 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCCB22D298B63F8006AE610 /* NetworkClient.swift */; };
+		DBCCB230298B6B04006AE610 /* MostPopularMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCCB22F298B6B04006AE610 /* MostPopularMovies.swift */; };
+		DBCCB232298B6D28006AE610 /* MoviesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCCB231298B6D28006AE610 /* MoviesLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +52,7 @@
 		DB97BB5A295D4A8C002C0C2F /* Defolt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Defolt.png; sourceTree = "<group>"; };
 		DB97BB5B295D4BEF002C0C2F /* YS Display-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "YS Display-Bold.ttf"; sourceTree = "<group>"; };
 		DB97BB5C295D4BEF002C0C2F /* YS Display-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "YS Display-Medium.ttf"; sourceTree = "<group>"; };
+		DB989BAD298A7DAE00139A40 /* ErrorNetworkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorNetworkViewModel.swift; sourceTree = "<group>"; };
 		DB9FA8EA2975909500E18418 /* AlertDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDelegate.swift; sourceTree = "<group>"; };
 		DB9FA8EC297592BD00E18418 /* AlertPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenterProtocol.swift; sourceTree = "<group>"; };
 		DB9FA8EE297AD41300E18418 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
@@ -61,6 +66,9 @@
 		DBB0132F2974067600B294BC /* QuestionFactoryDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionFactoryDelegate.swift; sourceTree = "<group>"; };
 		DBB01331297438D700B294BC /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		DBB013332974391F00B294BC /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
+		DBCCB22D298B63F8006AE610 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		DBCCB22F298B6B04006AE610 /* MostPopularMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostPopularMovies.swift; sourceTree = "<group>"; };
+		DBCCB231298B6D28006AE610 /* MoviesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +170,8 @@
 				DB9FA8EA2975909500E18418 /* AlertDelegate.swift */,
 				DB9FA8EC297592BD00E18418 /* AlertPresenterProtocol.swift */,
 				DB9FA8F0297BF89500E18418 /* StatisticService.swift */,
+				DBCCB22D298B63F8006AE610 /* NetworkClient.swift */,
+				DBCCB231298B6D28006AE610 /* MoviesLoader.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -175,6 +185,8 @@
 				DBB013332974391F00B294BC /* AlertModel.swift */,
 				DB9FA8EE297AD41300E18418 /* Movie.swift */,
 				DB9FA8F2297CF55400E18418 /* GameRecord.swift */,
+				DB989BAD298A7DAE00139A40 /* ErrorNetworkViewModel.swift */,
+				DBCCB22F298B6B04006AE610 /* MostPopularMovies.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -276,15 +288,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD5EE5DE284D7887003966EF /* UIColor+Extensions.swift in Sources */,
+				DB989BAE298A7DAE00139A40 /* ErrorNetworkViewModel.swift in Sources */,
 				DB9FA8F3297CF55400E18418 /* GameRecord.swift in Sources */,
 				AD7AFA552836189F00399704 /* Array+Extensions.swift in Sources */,
 				DBA419A52971703C00B5F6CB /* QuestionFactoryProtocol.swift in Sources */,
+				DBCCB230298B6B04006AE610 /* MostPopularMovies.swift in Sources */,
 				DBB013302974067600B294BC /* QuestionFactoryDelegate.swift in Sources */,
 				DBB013342974391F00B294BC /* AlertModel.swift in Sources */,
 				AD1ABAB62831907B00B3E448 /* MovieQuizViewController.swift in Sources */,
 				DBA4199F296FC56800B5F6CB /* QuizStepViewModel.swift in Sources */,
+				DBCCB232298B6D28006AE610 /* MoviesLoader.swift in Sources */,
 				DBA419A3296FC5AD00B5F6CB /* QuizQuestion.swift in Sources */,
 				DBB01332297438D700B294BC /* AlertPresenter.swift in Sources */,
+				DBCCB22E298B63F8006AE610 /* NetworkClient.swift in Sources */,
 				DB9FA8ED297592BD00E18418 /* AlertPresenterProtocol.swift in Sources */,
 				DBA4199C296FA76900B5F6CB /* QuestionFactory.swift in Sources */,
 				DB9FA8EB2975909500E18418 /* AlertDelegate.swift in Sources */,
